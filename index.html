@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acme Testing Conference 2026</title>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1>Acme Testing Conference 2026</h1>
+      <p><strong>Date:</strong> 12 November 2026</p>
+      <p><strong>Venue:</strong> Acme Convention Center, Springfield</p>
+
+      <h2>Program</h2>
+      <ol class="program">
+        <li>09:30 · The Pyramid Is a Lie (and Other Testing Shapes) · Marta Quillfeather</li>
+        <li>10:30 · Flaky Tests: A Field Guide · Tobias Wrenfield</li>
+        <li>11:30 · Unit Tests You Will Not Hate in Six Months · Ingrid Solvang</li>
+        <li>14:00 · Browser Automation Without Tears · Leandro Pizarro</li>
+        <li>15:00 · Testing in Production, On Purpose · Naoko Hartwell</li>
+        <li>16:00 · When the AI Writes the Tests · Desmond Okafor-Lind</li>
+      </ol>
+    </section>
+
+    <h2>Registration</h2>
+    <form id="registration" novalidate>
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" />
+        <span class="error" id="name-error"></span>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" />
+        <span class="error" id="email-error"></span>
+      </div>
+
+      <div class="field">
+        <label for="ticket">Ticket type</label>
+        <select id="ticket" name="ticket">
+          <option value="general">General, €120</option>
+          <option value="student">Student, €60</option>
+        </select>
+        <span class="error" id="ticket-error"></span>
+      </div>
+
+      <div class="field">
+        <label for="promo">Promo code (optional)</label>
+        <input type="text" id="promo" name="promo" />
+        <span class="error" id="promo-error"></span>
+      </div>
+
+      <div class="field">
+        <input type="checkbox" id="privacy" name="privacy" />
+        <label for="privacy">I accept the privacy policy</label>
+        <span class="error" id="privacy-error"></span>
+      </div>
+
+      <p id="confirmation" role="status"></p>
+
+      <button type="submit">Register</button>
+    </form>
+  </body>
+</html>

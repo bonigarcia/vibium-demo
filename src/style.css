@@ -1,0 +1,45 @@
+body {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.program li {
+  margin-bottom: 0.5rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field > label:first-child {
+  display: block;
+  font-weight: 600;
+}
+
+input[type='text'],
+input[type='email'],
+select {
+  width: 100%;
+  padding: 0.5rem;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.error {
+  display: block;
+  color: #b00020;
+}
+
+#confirmation {
+  color: #0a6b2d;
+  font-weight: 600;
+}
+
+button {
+  padding: 0.6rem 1.5rem;
+  font: inherit;
+  cursor: pointer;
+}

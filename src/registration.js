@@ -2,7 +2,7 @@
 export const TICKETS = { general: 120, student: 60 };
 
 // Promo codes and their discount in percent
-export const PROMO_CODES = { FRIENDS10: 10 };
+export const PROMO_CODES = { FRIENDS10: 10, EARLYBIRD: 20 };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

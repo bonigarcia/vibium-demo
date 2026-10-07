@@ -30,6 +30,10 @@ describe('validate', () => {
     expect(validate({ ...valid, promo: 'FRIENDS10' })).toEqual({});
   });
 
+  it('accepts the EARLYBIRD promo code', () => {
+    expect(validate({ ...valid, promo: 'EARLYBIRD' })).toEqual({});
+  });
+
   it('rejects an unknown promo code', () => {
     expect(validate({ ...valid, promo: 'FRIENDS50' })).toEqual({ promo: 'Unknown promo code' });
   });
@@ -56,5 +60,10 @@ describe('finalPrice', () => {
   it('applies 10% off with FRIENDS10', () => {
     expect(finalPrice('general', 'FRIENDS10')).toBe(108);
     expect(finalPrice('student', 'FRIENDS10')).toBe(54);
+  });
+
+  it('applies 20% off with EARLYBIRD', () => {
+    expect(finalPrice('general', 'EARLYBIRD')).toBe(96);
+    expect(finalPrice('student', 'EARLYBIRD')).toBe(48);
   });
 });

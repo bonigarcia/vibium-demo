@@ -1,7 +1,16 @@
 # vibium-demo
-Basic demo using Vibium
 
-Registration page for the fictional "Acme Testing Conference 2026", built with plain HTML, CSS and JavaScript.
+Demo for the talk *From Selenium to Vibium: when agents write the code, who checks it?* (VLCTesting 2026).
+
+The app is the registration page of a fictional event, "Acme Testing Conference 2026", built with plain HTML, CSS and JavaScript, Vite and Vitest. During the demo, a coding agent (Claude Code with the Vibium MCP server) implements a ticket, checks its work in a real browser, and a different model verifies the result with `vibium check`.
+
+## Requirements
+
+- Node.js 18+
+- [Vibium](https://github.com/VibiumDev/vibium) on the `PATH`:
+  - `npm install -g vibium` gives you the CLI, the MCP server and the client APIs.
+  - `vibium run` and `vibium check` currently need a nightly build: download the binary for your platform from a `nightly-*` pre-release on the [Vibium releases page](https://github.com/VibiumDev/vibium/releases).
+- For `vibium check`: an AI provider configured with `vibium setup ai` (OpenAI, Anthropic, Google, xAI, OpenAI-compatible such as OpenRouter, or local). Check it with `vibium ready ai`.
 
 ## Start the app
 
@@ -10,17 +19,56 @@ npm install
 npm run dev
 ```
 
-Then open the URL that Vite prints (by default http://localhost:5173).
+Then open http://localhost:5173.
 
-## Run the tests
+## Tests
 
 ```
-npm test
+npm test            # unit tests (Vitest)
+npm run test:e2e    # end-to-end tests with the Vibium JS client (app must be running)
 ```
+
+The end-to-end tests are deterministic: they use the Vibium API, with no AI involved.
+
+## The demo
+
+The ticket for the agent:
+
+> Add a fixed banner at the bottom of the screen announcing the EARLYBIRD promo code (20% off until 31 October 2026), and make the code work.
+
+1. **Part 1 – An agent with eyes.** Start from the `start` tag (`git switch -c live start`), run `npm run dev`, open `claude` and paste the ticket. The project's `.mcp.json` registers `vibium mcp`, and `CLAUDE.md` asks the agent to check visible changes in a real browser.
+2. **Part 2 – Independent verification.** When the agent is done, run `demo\verify.cmd` (Windows) or `demo/verify.sh` (macOS/Linux). It checks three claims with `vibium check`: two that should pass and a false one that must fail. Recordings are saved in `evidence/`.
+3. **Part 3 – The evidence.** Open https://player.vibium.dev and drop `evidence/claim-2-<label>.zip` into it. You can also ask a fresh model about a saved recording, without a browser:
+
+   ```
+   vibium check -i evidence/claim-2-<label>.zip "After submitting, the Register button is fully visible and not covered by the promo banner"
+   ```
+
+The `solution` tag contains one of the agent's solutions.
+
+## API examples
+
+The same flow (register with the FRIENDS10 code) with each Vibium client, in [`examples/`](examples):
+
+| Client | Run (with the app started) |
+|---|---|
+| JavaScript, async | `node examples/js/register-async.js` |
+| JavaScript, sync | `node examples/js/register-sync.js` |
+| Python, sync | `pip install -r examples/python/requirements.txt` then `python examples/python/register_sync.py` |
+| Python, async | `python examples/python/register_async.py` |
+| Java, sync | `cd examples/java` then `mvn -q compile exec:java` |
 
 ## Structure
 
 - `index.html`: the page (event information and registration form)
 - `src/registration.js`: pure functions for validation and price calculation
 - `src/main.js`: DOM handling
-- `src/registration.test.js`: Vitest unit tests
+- `src/registration.test.js`: unit tests
+- `e2e/`: end-to-end tests with the Vibium API
+- `examples/`: Vibium API examples in JavaScript, Python and Java
+- `demo/`: scripts for Part 2 of the demo
+- `.mcp.json`, `CLAUDE.md`: agent configuration
+
+## License
+
+Apache-2.0

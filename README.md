@@ -80,6 +80,6 @@ The same flow (register with the FRIENDS10 code) with each Vibium client, in [`e
 - `prompts/`: the prompt used to generate the app
 - `.mcp.json`, `CLAUDE.md`: agent configuration
 
-## License
+## About
 
-Apache-2.0
+vibium-demo (Copyright &copy; 2026) is an open-source project created and maintained by [Boni Garcia](https://bonigarcia.dev/), licensed under the terms of [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).

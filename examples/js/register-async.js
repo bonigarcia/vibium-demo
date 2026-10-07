@@ -11,7 +11,7 @@ try {
   await page.find('#name').fill('Ada Example')
   await page.find('#email').fill('ada@example.com')
   await page.find('#promo').fill('FRIENDS10')
-  await page.find('#privacy').set()
+  await page.find('#privacy').check() // set() in nightly builds
   await page.find('button[type=submit]').click()
   console.log(await page.find('#confirmation').text())
 } finally {

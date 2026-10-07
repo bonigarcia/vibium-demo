@@ -15,7 +15,7 @@ try:
     page.find("#name").fill("Ada Example")
     page.find("#email").fill("ada@example.com")
     page.find("#promo").fill("FRIENDS10")
-    page.find("#privacy").set()
+    page.find("#privacy").check()  # set() in nightly builds
     page.find("button[type=submit]").click()
     print(page.find("#confirmation").text())
 finally:

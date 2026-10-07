@@ -20,7 +20,7 @@ for (const code of Object.keys(PROMO_CODES)) {
     await page.find('#name').fill('Ada Example')
     await page.find('#email').fill('ada@example.com')
     await page.find('#promo').fill(code)
-    await page.find('#privacy').set()
+    await page.find('#privacy').check() // set() in nightly builds
     // click() waits until nothing covers the button (actionability checks)
     await page.find('button[type=submit]').click()
     expect(await page.find('#confirmation').text())

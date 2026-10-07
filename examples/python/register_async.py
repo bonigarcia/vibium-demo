@@ -18,7 +18,7 @@ async def main():
         await (await page.find("#name")).fill("Ada Example")
         await (await page.find("#email")).fill("ada@example.com")
         await (await page.find("#promo")).fill("FRIENDS10")
-        await (await page.find("#privacy")).set()
+        await (await page.find("#privacy")).check()  # set() in nightly builds
         await (await page.find("button[type=submit]")).click()
         print(await (await page.find("#confirmation")).text())
     finally:

@@ -1,6 +1,6 @@
 # vibium-demo
 
-Demo for the talk *From Selenium to Vibium: when agents write the code, who checks it?* (VLCTesting 2026).
+Demo for the talk *From Selenium to Vibium: when agents write the code, who checks it?*
 
 The app is the registration page of a fictional event, "Acme Testing Conference 2026", built with plain HTML, CSS and JavaScript, Vite and Vitest. During the demo, a coding agent (Claude Code with the Vibium MCP server) implements a ticket, checks its work in a real browser, and a different model verifies the result with `vibium check`.
 
@@ -37,11 +37,11 @@ The ticket for the agent:
 > Add a fixed banner at the bottom of the screen announcing the EARLYBIRD promo code (20% off until 31 October 2026), and make the code work.
 
 1. **Part 1 – An agent with eyes.** Start from the `start` tag (`git switch -c live start`), run `npm run dev`, open `claude` and paste the ticket. The project's `.mcp.json` registers `vibium mcp`, and `CLAUDE.md` asks the agent to check visible changes in a real browser.
-2. **Part 2 – Independent verification.** When the agent is done, run `demo\verify.cmd` (Windows) or `demo/verify.sh` (macOS/Linux). It checks three claims with `vibium check`: two that should pass and a false one that must fail. Recordings are saved in `evidence/`.
-3. **Part 3 – The evidence.** Open https://player.vibium.dev and drop `evidence/claim-2-<label>.zip` into it. You can also ask a fresh model about a saved recording, without a browser:
+2. **Part 2 – Independent verification.** When the agent is done, run `demo\verify.cmd` (Windows) or `demo/verify.sh` (macOS/Linux). It checks three claims with `vibium check`: two that should pass, and a control: a claim we know is false (the banner has no close button), which must fail. A verifier that can't say FAIL tells you nothing when it says PASS. Recordings are saved in `evidence/`.
+3. **Part 3 – Evidence, not trust.** The verifier's PASS is a claim too, so every check saves a recording. Open https://player.vibium.dev and drop `evidence/claim-2-<label>.zip` into it to see what the verifier did, step by step. You can also ask a new question about a saved recording, without the app or a browser:
 
    ```
-   vibium check -i evidence/claim-2-<label>.zip "After submitting, the Register button is fully visible and not covered by the promo banner"
+   vibium check -i evidence/claim-2-<label>.zip "After submitting, no part of the Register button is covered by the banner"
    ```
 
 The `solution` tag contains the code from one of the agent's runs. Each run fixes the overlap in a slightly different way.

@@ -52,6 +52,8 @@ The `solution` tag contains the code from one of the agent's runs. Each run fixe
 
 The same flow (register with the FRIENDS10 code) with each Vibium client, in [`examples/`](examples). They use the stable release (26.8.21); in newer builds, `check()` on a checkbox is renamed `set()`, because `check` is now the AI verification.
 
+**Prerequisite:** start the app (`npm run dev`) before running any example.
+
 > **Java note:** the Java client looks for the `vibium` binary on the `PATH` before using its bundled one. If a nightly build is on your `PATH`, the 26.8.21 client and the nightly binary don't match (`Unknown command 'vibium:element.check'`). Point the client to the stable binary installed by `npm install`, in the same terminal:
 >
 > ```
@@ -60,13 +62,13 @@ The same flow (register with the FRIENDS10 code) with each Vibium client, in [`e
 >
 > (macOS/Linux: `export VIBIUM_BIN_PATH=$PWD/../../node_modules/@vibium/<platform>-<arch>/bin/vibium`)
 
-| Client | Run (with the app started) |
+| Language | Run command |
 |---|---|
 | JavaScript, async | `node examples/js/register-async.js` |
 | JavaScript, sync | `node examples/js/register-sync.js` |
-| Python, sync | `pip install -r examples/python/requirements.txt` then `python examples/python/register_sync.py` |
 | Python, async | `python examples/python/register_async.py` |
-| Java, sync | `cd examples/java` then `mvn -q compile exec:java` (see the Java note above) |
+| Python, sync | `pip install -r examples/python/requirements.txt` then `python examples/python/register_sync.py` |
+| Java, sync | `cd examples/java` then `mvn -q compile exec:java` (see Java note above) |
 
 ## Structure
 

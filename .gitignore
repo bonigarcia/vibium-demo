@@ -1,0 +1,7 @@
+node_modules
+.claude/settings.local.json
+evidence/
+.venv/
+__pycache__/
+examples/java/target/
+.idea

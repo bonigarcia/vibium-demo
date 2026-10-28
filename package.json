@@ -1,0 +1,15 @@
+{
+  "name": "vibium-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run --dir src",
+    "test:e2e": "vitest run --dir e2e"
+  },
+  "devDependencies": {
+    "vibium": "26.8.21",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
+  }
+}
